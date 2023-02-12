@@ -18,7 +18,7 @@
 	let tempDescription: string;
 
 	let saved: boolean = false;
-	let isCreateDisabled = true;
+	let isSavingDisabled = true;
 
 	$: {
 		folderId = $page.params.folderId;
@@ -27,7 +27,7 @@
 		folder = $folders.find(folder => folder.id === folderId);
 		todo = folder?.todos.find(todo => todo.id === todoId);
 		
-		tempName && tempDescription ? isCreateDisabled = false : true;
+		tempName && tempDescription ? isSavingDisabled = false : true;
 	}
 
 	let saveTodo = () => {
@@ -96,7 +96,7 @@
 					</div>
 					<div class="flex justify-end">
 						<button type="button" class="btn btn-outline mt-4 mr-4" on:click={cancelEditing}>Cancel</button>
-						<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 border-none mt-4 min-w-[200px]" disabled={isCreateDisabled}>Save</button>
+						<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 border-none mt-4 min-w-[200px]" disabled={isSavingDisabled}>Save</button>
 					</div>
 					{#if saved}
 						<div class="flex justify-end">
