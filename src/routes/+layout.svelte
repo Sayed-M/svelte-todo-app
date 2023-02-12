@@ -2,19 +2,20 @@
 	import "../app.postcss";
 	import type { IFolder } from '../lib/models/models';
 	import Folder from "../lib/components/folder.svelte";
+	import { folders } from "../lib/stores/folders";
 	// import Header from './Header.svelte';
 	// import './styles.css';
 
 	let folderName = '';
-
-	let folders: IFolder[] = [];
 
 	let addFolder = () => {
 		if (folderName) {
 			let newFolder: IFolder = {
 			name: folderName
 			}
-			folders = [newFolder, ...folders]
+			folders.update(currentFolders => {
+				return [newFolder, ...currentFolders];
+			})
 		}
 		folderName = '';
 	}
@@ -26,7 +27,7 @@
 			<input type="text" placeholder="Type here" bind:value={folderName} class="input w-full max-w-xs" />
 		</form>
 		<ul class="bg-base-100 mt-4">
-			{#each folders as folder}
+			{#each $folders as folder}
 				<Folder {folder}></Folder>
 			{/each}
 		</ul>		  

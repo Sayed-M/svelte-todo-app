@@ -5,4 +5,4 @@
 
 </script>
 
-<li><a href="" class="text-primary">{folder.name}</a></li>
+<li><a href="" class="text-primary break-words">{folder.name}</a></li>
