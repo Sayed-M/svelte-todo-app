@@ -1,10 +1,42 @@
-<script>
-	import "../app.css";
-	import Header from './Header.svelte';
-	import './styles.css';
+<script lang="ts">
+	import "../app.postcss";
+	import type { IFolder } from '../lib/models/models';
+	import Folder from "../lib/components/folder.svelte";
+	// import Header from './Header.svelte';
+	// import './styles.css';
+
+	let folderName = '';
+
+	let folders: IFolder[] = [];
+
+	let addFolder = () => {
+		if (folderName) {
+			let newFolder: IFolder = {
+			name: folderName
+			}
+			folders = [newFolder, ...folders]
+		}
+		folderName = '';
+	}
 </script>
 
-<div class="app">
+<main class="flex gap-4 flex-row min-h-screen">
+	<aside class="w-[200px] border-indigo-600 border-r">
+		<form on:submit|preventDefault={addFolder}>
+			<input type="text" placeholder="Type here" bind:value={folderName} class="input w-full max-w-xs" />
+		</form>
+		<ul class="bg-base-100 mt-4">
+			{#each folders as folder}
+				<Folder {folder}></Folder>
+			{/each}
+		</ul>		  
+	</aside>
+	<section class="grow">
+		test
+	</section>
+</main>
+
+<!-- <div class="app">
 	<Header />
 
 	<main>
@@ -14,10 +46,10 @@
 	<footer>
 		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
 	</footer>
-</div>
+</div> -->
 
 <style>
-	.app {
+	/* .app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
@@ -50,5 +82,5 @@
 		footer {
 			padding: 12px 0;
 		}
-	}
+	} */
 </style>
