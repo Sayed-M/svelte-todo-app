@@ -3,6 +3,7 @@
 	import type { IFolder } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
 	import Todo from '$lib/components/Todo.svelte';
+    import { v4 as uuidv4 } from 'uuid';
 
 	let folder: IFolder;
 
@@ -12,17 +13,20 @@
 	let isCreateDisabled = true;
 
 	let addTodo = () => {
-		let newTodo = {
-			name: todoName,
-			description: todoDescription
+		if (todoName && todoDescription) {
+			let newTodo = {
+            	id: uuidv4(),
+				name: todoName,
+				description: todoDescription
+			}
+			folder.todos = [
+				newTodo,
+				...folder.todos
+			]
+			todoName = '';
+			todoDescription = '';
+			isCreateDisabled = true
 		}
-		folder.todos = [
-			newTodo,
-			...folder.todos
-		]
-		todoName = '';
-		todoDescription = '';
-		isCreateDisabled = true
 	}
 
 	$: {
@@ -46,7 +50,7 @@
 		<h3>Todos</h3>
 		{#if folder.todos.length}
 			{#each folder.todos as todo}
-				<Todo {todo}></Todo>
+				<Todo {todo} folderId={folder.id}></Todo>
 			{/each}
 			{:else}
 			<p>No todos in this folder, create some!</p>

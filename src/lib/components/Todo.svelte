@@ -1,8 +1,20 @@
 <script lang="ts">
 	import type { ITodo } from "$lib/models/models";
+	import { folders } from "$lib/stores/folders";
 
+    export let todo: ITodo;
+    export let folderId: string;
 
-    export let todo: any;
+    let deleteTodo = () => {
+        let currentFolder = $folders.find(folder => folder.id === folderId)
+        let updatedTodos = currentFolder?.todos.filter(td => td.id !== todo.id);
+        currentFolder.todos = [...updatedTodos]
+
+        folders.update((currentFolders) => {
+            return currentFolders;
+        })
+    }
+
 </script>
 
 <div class="card card-compact w-96 bg-base-100 shadow-xl">
@@ -11,7 +23,7 @@
       <p>{todo?.description}</p>
       <div class="card-actions justify-end">
         <button class="btn btn-primary">Done</button>
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" on:click={deleteTodo}>Delete</button>
       </div>
     </div>
 </div>

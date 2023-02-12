@@ -2,23 +2,26 @@
 	import type { IFolder, ITodo } from '$lib/models/models';
     import { folders } from '../stores/folders';
 	import Todo from './Todo.svelte';
+    import { v4 as uuidv4 } from 'uuid';
 
     let todos: ITodo[] = [
         {
+            id: uuidv4(),
             name: 'my first todo',
             description: 'my first todo description'
         },
         {
+            id: uuidv4(),
             name: 'my second todo',
             description: 'my second todo description'
         },
         {
+            id: uuidv4(),
             name: 'my third todo',
             description: 'my third todo description'
         }
     ]
 
-    // let todos: ITodo[] = [];
 </script>
 
 {#if $folders.length}
