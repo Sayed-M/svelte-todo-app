@@ -67,10 +67,10 @@
 <section class="pt-8">
 	<div class="flex justify-between gap-4">
 		
-		<form on:submit|preventDefault={saveTodo}>
+		<form class="grow" on:submit|preventDefault={saveTodo}>
 			<div class="grow mr-4">
 				<div class="flex flex-col p-4">
-					<h3 class="text-slate-900 font-bold">Edit Todo name</h3>
+					<h3 class="text-slate-900 text-xl font-semibold">Edit Todo {todo.name}</h3>
 					<div>
 						<label for="" class="label">
 							<span class="label-text text-slate-900">Name</span>
@@ -83,9 +83,14 @@
 						</label>
 						<input type="text" bind:value={tempDescription} class="input border-slate-400 w-full" placeholder="Todo description">
 					</div>
-					<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 border-none mt-4" disabled={isCreateDisabled}>Save</button>
+					<div class="flex justify-end">
+						<button type="button" class="btn btn-outline mt-4 mr-4">Cancel</button>
+						<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 border-none mt-4 min-w-[200px]" disabled={isCreateDisabled}>Save</button>
+					</div>
 					{#if saved}
-						<p transition:fade class="text-md font-semibold text-success">Saved successfully!</p>
+						<div class="flex justify-end">
+							<p transition:fade class="text-md font-semibold text-success">Saved successfully!</p>
+						</div>
 					{/if}
 				</div>
 			</div>
