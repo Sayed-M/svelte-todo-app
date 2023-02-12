@@ -4,6 +4,7 @@
 	import Folder from "../lib/components/Folder.svelte";
 	import { folders } from "../lib/stores/folders";
 	import Todos from '../lib/components/Todos.svelte';
+	import { v4 as uuidv4 } from 'uuid';
 	// import Header from './Header.svelte';
 	// import './styles.css';
 
@@ -12,7 +13,8 @@
 	let addFolder = () => {
 		if (folderName) {
 			let newFolder: IFolder = {
-			name: folderName
+				id: uuidv4(),
+				name: folderName
 			}
 			folders.update(currentFolders => {
 				return [newFolder, ...currentFolders];

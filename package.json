@@ -37,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^2.50.0",
-		"svelte-routing": "^1.6.0"
+		"svelte-routing": "^1.6.0",
+		"uuidv4": "^6.2.13"
 	}
 }
