@@ -26,12 +26,15 @@
 			todoName = '';
 			todoDescription = '';
 			isCreateDisabled = true
+			folders.update((currentFolders) => {
+				return currentFolders;
+			})
 		}
 	}
 
 	$: {
 		
-		folder = $folders.find(folder => folder.id === $page.params.id);
+		folder = $folders.find(folder => folder.id === $page.params.folderId);
 
 		todoName && todoDescription ? isCreateDisabled = false : true;
 

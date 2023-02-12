@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ITodo } from "$lib/models/models";
 	import { folders } from "$lib/stores/folders";
+    import { navigate } from "svelte-routing";
 
     export let todo: ITodo;
     export let folderId: string;
@@ -15,10 +16,6 @@
         })
     }
 
-let editTodo = () => {
-    
-}
-
 </script>
 
 <div class="card card-compact w-96 bg-base-100 shadow-xl">
@@ -26,7 +23,7 @@ let editTodo = () => {
       <h2 class="card-title">{todo?.name}</h2>
       <p>{todo?.description}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-outline text-slate-500" on:click={editTodo}>Edit</button>
+        <a href="/folders/{folderId}/todos/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
         <button class="btn btn-success text-white" on:click={deleteTodo}>Done</button>
       </div>
     </div>
