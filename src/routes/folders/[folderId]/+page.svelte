@@ -51,7 +51,7 @@
 <section class="pt-6">
 	<div class="flex justify-between gap-4">
 		<div class="flex flex-col">
-			<h3 class="text-xl font-bold mb-4">Todos</h3>
+			<h3 class="text-xl font-bold mb-4">{folder.name} Todos</h3>
 			{#if folder.todos.length}
 				<div class="flex flex-wrap gap-4">
 					{#each folder.todos as todo}
