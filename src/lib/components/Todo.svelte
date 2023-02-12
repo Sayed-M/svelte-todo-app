@@ -2,7 +2,7 @@
 	import type { ITodo } from "$lib/models/models";
 
 
-    export let todo: ITodo;
+    export let todo: any;
 </script>
 
 <div class="card card-compact w-96 bg-base-100 shadow-xl">

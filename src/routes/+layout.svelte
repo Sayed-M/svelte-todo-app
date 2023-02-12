@@ -16,7 +16,8 @@
 		<Folders></Folders>
 	</aside>
 	<section class="grow">
-		<Todos></Todos>
+		<!-- <Todos></Todos> -->
+		<slot />
 	</section>
 </main>
 

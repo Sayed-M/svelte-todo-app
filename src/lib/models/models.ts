@@ -1,7 +1,7 @@
 export interface IFolder {
     id: string;
     name: string;
-    todos?: ITodo[];
+    todos: ITodo[];
 }
 
 export interface ITodo {

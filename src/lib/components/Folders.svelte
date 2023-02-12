@@ -10,7 +10,8 @@
         if (folderName) {
             let newFolder: IFolder = {
                 id: uuidv4(),
-                name: folderName
+                name: folderName,
+                todos: []
             }
             folders.update(currentFolders => {
                 return [newFolder, ...currentFolders];
