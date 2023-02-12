@@ -10,7 +10,7 @@
 	let todoName: string;
 	let todoDescription: string;
 
-	let isCreateDisabled: boolean = true;
+	let isAddDisabled: boolean = true;
 
 	let addTodo = () => {
 		if (todoName && todoDescription) {
@@ -25,7 +25,7 @@
 			]
 			todoName = '';
 			todoDescription = '';
-			isCreateDisabled = true
+			isAddDisabled = true
 			folders.update((currentFolders) => {
 				return currentFolders;
 			})
@@ -36,7 +36,7 @@
 		
 		folder = $folders.find(folder => folder.id === $page.params.folderId);
 
-		todoName && todoDescription ? isCreateDisabled = false : true;
+		todoName && todoDescription ? isAddDisabled = false : true;
 
 	}
 
@@ -77,7 +77,7 @@
 						</label>
 						<input type="text" bind:value={todoDescription} class="input w-full" placeholder="Todo description">
 					</div>
-					<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 mt-4" disabled={isCreateDisabled}>Add</button>
+					<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 mt-4" disabled={isAddDisabled}>Add</button>
 				</div>
 			</div>
 		</form>
