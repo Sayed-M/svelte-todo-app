@@ -22,7 +22,7 @@
 </script>
 
 <form on:submit|preventDefault={addFolder}>
-    <input type="text" placeholder="Type here" bind:value={folderName} class="input w-full max-w-xs" />
+    <input type="text" placeholder="Add new Folder" bind:value={folderName} class="input w-full max-w-xs" />
 </form>
 <ul class="bg-base-100 mt-4">
     {#each $folders as folder}
