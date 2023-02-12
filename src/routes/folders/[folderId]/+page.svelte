@@ -23,12 +23,13 @@
 				newTodo,
 				...folder.todos
 			]
-			todoName = '';
-			todoDescription = '';
-			isAddDisabled = true
 			folders.update((currentFolders) => {
 				return currentFolders;
-			})
+			});
+
+			todoName = '';
+			todoDescription = '';
+			isAddDisabled = true;
 		}
 	}
 
