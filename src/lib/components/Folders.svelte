@@ -49,7 +49,7 @@
     <form on:submit|preventDefault={() => createFolder()}>
         <div class="form-control">
             <div class="input-group">
-                <input type="text" placeholder="Folder name..." bind:value={folderName} class="input w-full max-w-xs p-1 text-sm" />
+                <input type="text" placeholder="Folder name..." autofocus bind:value={folderName} class="input w-full max-w-xs p-1 text-sm focus:outline-none" />
                 <button class="btn btn-accent bg-sky-500 hover:bg-sky-600 text-white disabled:bg-slate-300" disabled={isCreateDisabled}>Create</button>
             </div>
         </div>
