@@ -1,15 +1,18 @@
 <script>
-	
+	import { folders } from "$lib/stores/folders";
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte todo app" />
 </svelte:head>
 
-<section>
+<section class="pt-8">
 
-	Start by adding folders!
+	{#if $folders.length}
+		<p class="text-lg">Select a folder from the side menu!</p>
+		{:else}
+		<p class="text-lg">Start by creating folders!</p>
+	{/if}
 
 </section>
 

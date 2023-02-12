@@ -36,14 +36,14 @@
         </ul>
         {:else}
         <div class="p-1 rounded">
-            <p class="text-white">No folders yet!</p>
+            <p class="text-white">Create a folder</p>
         </div>
     {/if}
     <form on:submit|preventDefault={addFolder}>
         <div class="form-control">
             <div class="input-group">
                 <input type="text" placeholder="Folder name..." bind:value={folderName} class="input w-full max-w-xs p-1 text-sm" />
-                <button class="btn btn-accent text-white disabled:bg-white" disabled={isAddDisabled}>Add</button>
+                <button class="btn btn-accent bg-sky-500 hover:bg-sky-600 text-white disabled:bg-slate-300" disabled={isAddDisabled}>Create</button>
             </div>
         </div>
     </form>

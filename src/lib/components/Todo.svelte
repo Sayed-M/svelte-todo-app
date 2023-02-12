@@ -22,7 +22,7 @@
       <h2 class="card-title">{todo?.name}</h2>
       <p>{todo?.description}</p>
       <div class="card-actions justify-end">
-        <button class="btn btn-primary" on:click={deleteTodo}>Done</button>
+        <button class="btn btn-success text-white" on:click={deleteTodo}>Done</button>
       </div>
     </div>
 </div>

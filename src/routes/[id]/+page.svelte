@@ -40,28 +40,43 @@
 </script>
 
 <svelte:head>
-	<title>todos of folder {folder.name}</title>
+	<title>Todos of folder {folder.name}</title>
 </svelte:head>
 
-<h2>folder name: {folder?.name} #{folder?.id}</h2>
-<br>
-<div class="flex justify-between">
-	<div class="flex flex-col">
-		<h3>Todos</h3>
-		{#if folder.todos.length}
-			{#each folder.todos as todo}
-				<Todo {todo} folderId={folder.id}></Todo>
-			{/each}
-			{:else}
-			<p>No todos in this folder, create some!</p>
-		{/if}
-	</div>
-	
-	<form on:submit|preventDefault={addTodo}>
-		<div class="flex flex-col p-4 min-w-[300px] border-l border-primary">
-			<input type="text" bind:value={todoName} class="input mb-4" placeholder="todo name">
-			<input type="text" bind:value={todoDescription} class="input mb-4" placeholder="todo description">
-			<button type="submit" class="btn" disabled={isCreateDisabled}>Create</button>
+<section class="pt-8">
+	<div class="flex justify-between gap-4">
+		<div class="flex flex-col">
+			<h3 class="text-xl font-bold mb-4">Todos</h3>
+			{#if folder.todos.length}
+				<div class="flex flex-wrap gap-4">
+					{#each folder.todos as todo}
+						<Todo {todo} folderId={folder.id}></Todo>
+					{/each}
+				</div>
+				{:else}
+				<p class="text-md mt-2">No todos yet in this folder, Add some!</p>
+			{/if}
 		</div>
-	</form>
-</div>
+		
+		<form on:submit|preventDefault={addTodo}>
+			<div class="bg-slate-800 w-[300px] border-indigo-600 border-r mr-4">
+				<div class="flex flex-col p-4 min-w-[300px] border-l border-primary">
+					<h3 class="text-white font-bold">Add a new Todo</h3>
+					<div>
+						<label for="" class="label">
+							<span class="label-text text-white">Name</span>
+						</label>
+						<input type="text" bind:value={todoName} class="input w-full" placeholder="Todo name">
+					</div>
+					<div>
+						<label for="" class="label">
+							<span class="label-text text-white">Description</span>
+						</label>
+						<input type="text" bind:value={todoDescription} class="input w-full" placeholder="Todo description">
+					</div>
+					<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 mt-4" disabled={isCreateDisabled}>Add</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>

@@ -6,10 +6,10 @@
 
 </script>
 
-<li class="flex"><a href="/{folder.id}" class="grow no-underline rounded bg-yellow-500 hover-bg-yellow-600 text-white break-words mt-2 p-2" class:active={folder.id === $page.params.id}>{folder.name}</a></li>
+<li class="flex"><a href="/{folder.id}" class="grow no-underline rounded bg-slate-600 hover:bg-sky-400 text-white break-words mt-2 p-2" class:active={folder.id === $page.params.id}>{folder.name}</a></li>
 
 <style lang="postcss">
     .active { 
-        @apply bg-yellow-700;
+        @apply bg-sky-400;
     }
 </style>
