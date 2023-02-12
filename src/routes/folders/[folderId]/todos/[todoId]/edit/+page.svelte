@@ -81,7 +81,7 @@
 		<form class="grow" on:submit|preventDefault={saveTodo}>
 			<div class="grow mr-4">
 				<div class="flex flex-col p-4">
-					<h3 class="text-slate-900 text-xl font-semibold">Edit Todo {todo.name}</h3>
+					<h3 class="text-slate-900 text-xl font-semibold break-all">Edit Todo {todo.name}</h3>
 					<div>
 						<label for="" class="label">
 							<span class="label-text text-slate-900">Name</span>
