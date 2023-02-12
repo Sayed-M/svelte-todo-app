@@ -52,7 +52,7 @@
 		<div class="flex flex-col grow min-w-[250px]">
 			<h3 class="text-xl font-bold mb-4 capitalize break-all">{folder.name} Todos</h3>
 			{#if folder.todos.length}
-				<div class="flex flex-wrap gap-4">
+				<div class="flex flex-wrap gap-4 mb-10">
 					{#each folder.todos as todo}
 						<Todo {todo} folderId={folder.id}></Todo>
 					{/each}
