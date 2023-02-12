@@ -44,7 +44,7 @@
 </script>
 
 <svelte:head>
-	<title>Todos of folder {folder.name}</title>
+	<title>{folder.name} Todos</title>
 </svelte:head>
 
 <section class="pt-6">
