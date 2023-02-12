@@ -21,7 +21,6 @@
             folders.update(currentFolders => {
                 return [newFolder, ...currentFolders];
             });
-            localStorage.setItem("folders", JSON.stringify($folders));
 
             folderName = '';
             isCreateDisabled = true;

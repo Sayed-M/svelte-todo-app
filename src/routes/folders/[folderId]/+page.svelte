@@ -26,7 +26,6 @@
 			folders.update((currentFolders) => {
 				return currentFolders;
 			});
-            localStorage.setItem("todos", JSON.stringify($folders));
 
 			todoName = '';
 			todoDescription = '';
