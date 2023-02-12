@@ -5,4 +5,5 @@ export interface IFolder {
 
 export interface ITodo {
     name: string;
+    description: string;
 }

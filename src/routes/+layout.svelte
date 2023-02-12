@@ -1,8 +1,9 @@
 <script lang="ts">
 	import "../app.postcss";
 	import type { IFolder } from '../lib/models/models';
-	import Folder from "../lib/components/folder.svelte";
+	import Folder from "../lib/components/Folder.svelte";
 	import { folders } from "../lib/stores/folders";
+	import Todos from '../lib/components/Todos.svelte';
 	// import Header from './Header.svelte';
 	// import './styles.css';
 
@@ -33,7 +34,7 @@
 		</ul>		  
 	</aside>
 	<section class="grow">
-		test
+		<Todos></Todos>
 	</section>
 </main>
 
