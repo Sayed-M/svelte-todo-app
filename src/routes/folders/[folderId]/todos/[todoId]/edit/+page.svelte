@@ -72,10 +72,10 @@
 </script>
 
 <svelte:head>
-	<title>Edit Todo</title>
+	<title>Edit Todo {todo.name}</title>
 </svelte:head>
 
-<section class="pt-8">
+<section class="pt-6">
 	<div class="flex justify-between gap-4">
 		
 		<form class="grow" on:submit|preventDefault={saveTodo}>

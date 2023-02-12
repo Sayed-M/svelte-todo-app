@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import type { IFolder } from '$lib/models/models';
+	import type { IFolder, ITodo } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
 	import Todo from '$lib/components/Todo.svelte';
     import { v4 as uuidv4 } from 'uuid';
@@ -10,11 +10,11 @@
 	let todoName: string;
 	let todoDescription: string;
 
-	let isCreateDisabled = true;
+	let isCreateDisabled: boolean = true;
 
 	let addTodo = () => {
 		if (todoName && todoDescription) {
-			let newTodo = {
+			const newTodo: ITodo = {
             	id: uuidv4(),
 				name: todoName,
 				description: todoDescription
@@ -46,7 +46,7 @@
 	<title>Todos of folder {folder.name}</title>
 </svelte:head>
 
-<section class="pt-8">
+<section class="pt-6">
 	<div class="flex justify-between gap-4">
 		<div class="flex flex-col">
 			<h3 class="text-xl font-bold mb-4">Todos</h3>

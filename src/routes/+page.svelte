@@ -6,7 +6,7 @@
 	<title>Home</title>
 </svelte:head>
 
-<section class="pt-8">
+<section class="pt-6">
 
 	{#if $folders.length}
 		<p class="text-lg">Select a folder from the side menu!</p>

@@ -4,8 +4,8 @@
 	import { folders } from "$lib/stores/folders";
 	import { v4 as uuidv4 } from 'uuid';
 
-    let folderName = '';
-    let isAddDisabled = true;
+    let folderName: string = '';
+    let isAddDisabled: boolean = true;
 
     $: {
         folderName ? isAddDisabled = false : true
@@ -27,15 +27,15 @@
     }
 </script>
 
-<section class="flex flex-col gap-2 p-2">
+<section class="flex flex-col gap-2 px-2">
     {#if $folders.length}
-        <ul class="pt-4">
+        <ul>
             {#each $folders as folder}
                 <Folder {folder}></Folder>
             {/each}
         </ul>
         {:else}
-        <div class="p-1 rounded">
+        <div>
             <p class="text-white">Create a folder</p>
         </div>
     {/if}
