@@ -6,7 +6,7 @@
 
 </script>
 
-<li class="flex mb-2"><a href="/folders/{folder.id}" class="grow no-underline capitalize  rounded bg-slate-600 hover:bg-sky-400 text-white break-words p-2" class:active={folder.id === $page.params.folderId}>{folder.name}</a></li>
+<li class="flex mb-2"><a href="/folders/{folder.id}" class="grow no-underline capitalize break-all rounded bg-slate-600 hover:bg-sky-400 text-white break-words p-2" class:active={folder.id === $page.params.folderId}>{folder.name}</a></li>
 
 <style lang="postcss">
     .active { 
