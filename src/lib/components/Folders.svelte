@@ -5,10 +5,10 @@
 	import { v4 as uuidv4 } from 'uuid';
 
     let folderName: string = '';
-    let isAddDisabled: boolean = true;
+    let isCreateDisabled: boolean = true;
 
     $: {
-        folderName ? isAddDisabled = false : true
+        folderName ? isCreateDisabled = false : true
     }
 
     let addFolder = () => {
@@ -23,7 +23,7 @@
             })
         }
         folderName = '';
-        isAddDisabled = true
+        isCreateDisabled = true
     }
 </script>
 
@@ -43,7 +43,7 @@
         <div class="form-control">
             <div class="input-group">
                 <input type="text" placeholder="Folder name..." bind:value={folderName} class="input w-full max-w-xs p-1 text-sm" />
-                <button class="btn btn-accent bg-sky-500 hover:bg-sky-600 text-white disabled:bg-slate-300" disabled={isAddDisabled}>Create</button>
+                <button class="btn btn-accent bg-sky-500 hover:bg-sky-600 text-white disabled:bg-slate-300" disabled={isCreateDisabled}>Create</button>
             </div>
         </div>
     </form>
