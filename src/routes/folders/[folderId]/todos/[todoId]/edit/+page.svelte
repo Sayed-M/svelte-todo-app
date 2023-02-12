@@ -86,7 +86,7 @@
 						<label for="" class="label">
 							<span class="label-text text-slate-900">Name</span>
 						</label>
-						<input type="text" bind:value={tempName} class="input border-slate-400 w-full" placeholder="Todo name">
+						<input type="text" bind:value={tempName} class="input border-slate-400 w-full" autofocus placeholder="Todo name">
 					</div>
 					<div>
 						<label for="" class="label">
