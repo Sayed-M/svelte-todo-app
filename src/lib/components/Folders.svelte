@@ -11,7 +11,7 @@
         folderName ? isCreateDisabled = false : true
     }
 
-    let addFolder = () => {
+    let createFolder = () => {
         if (folderName) {
             let newFolder: IFolder = {
                 id: uuidv4(),
@@ -21,6 +21,7 @@
             folders.update(currentFolders => {
                 return [newFolder, ...currentFolders];
             })
+            localStorage.setItem("folders", JSON.stringify($folders));
         }
         folderName = '';
         isCreateDisabled = true
@@ -39,7 +40,7 @@
             <p class="text-white">Create a folder</p>
         </div>
     {/if}
-    <form on:submit|preventDefault={addFolder}>
+    <form on:submit|preventDefault={createFolder}>
         <div class="form-control">
             <div class="input-group">
                 <input type="text" placeholder="Folder name..." bind:value={folderName} class="input w-full max-w-xs p-1 text-sm" />
