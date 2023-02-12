@@ -35,6 +35,7 @@
 
 <section class="flex flex-col gap-2 px-2">
     {#if $folders.length}
+        <h3 class="text-slate-400 font-bold">Folders</h3>
         <ul>
             {#each $folders as folder}
                 <Folder {folder}></Folder>
