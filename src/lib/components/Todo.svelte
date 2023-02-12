@@ -1,7 +1,6 @@
 <script lang="ts">
-	import type { ITodo } from "$lib/models/models";
-	import { folders } from "$lib/stores/folders";
-    import { navigate } from "svelte-routing";
+    import type { ITodo } from "$lib/models/models";
+    import { folders } from "$lib/stores/folders";
 
     export let todo: ITodo;
     export let folderId: string;

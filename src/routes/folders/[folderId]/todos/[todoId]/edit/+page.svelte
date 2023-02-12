@@ -48,6 +48,17 @@
 		}
 	}
 
+	let cancelEditing = () => {
+		if (tempName === todo.name && tempDescription === todo.description) {
+			// Navigate safely
+			goto(`/folders/${folderId}`, { replaceState: true })
+		} else {
+			// unsaved changes
+			let discardChanges = confirm('You have unsaved changes, do you want to dicard it?');
+			discardChanges ? goto(`/folders/${folderId}`, { replaceState: true }) : null;
+		}
+	}
+
 	onMount(async () => {
 		tempTodo = Object.assign({}, {
 			id: todo.id,
@@ -84,7 +95,7 @@
 						<input type="text" bind:value={tempDescription} class="input border-slate-400 w-full" placeholder="Todo description">
 					</div>
 					<div class="flex justify-end">
-						<button type="button" class="btn btn-outline mt-4 mr-4">Cancel</button>
+						<button type="button" class="btn btn-outline mt-4 mr-4" on:click={cancelEditing}>Cancel</button>
 						<button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 border-none mt-4 min-w-[200px]" disabled={isCreateDisabled}>Save</button>
 					</div>
 					{#if saved}
