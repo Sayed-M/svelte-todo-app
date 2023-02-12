@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
 	import type { IFolder } from '$lib/models/models';
 	import Folder from "$lib/components/Folder.svelte";
 	import { folders } from "$lib/stores/folders";
@@ -8,7 +9,7 @@
     let isCreateDisabled: boolean = true;
 
     $: {
-        folderName ? isCreateDisabled = false : true
+        folderName ? isCreateDisabled = false : true;
     }
 
     let createFolder = () => {
@@ -21,6 +22,10 @@
             folders.update(currentFolders => {
                 return [newFolder, ...currentFolders];
             });
+
+            if ($folders.length === 1) {
+                goto(`/folders/${$folders[0].id}`, { replaceState: true });
+            }
 
             folderName = '';
             isCreateDisabled = true;
@@ -40,7 +45,7 @@
             <p class="text-white">Create a folder</p>
         </div>
     {/if}
-    <form on:submit|preventDefault={createFolder}>
+    <form on:submit|preventDefault={() => createFolder()}>
         <div class="form-control">
             <div class="input-group">
                 <input type="text" placeholder="Folder name..." bind:value={folderName} class="input w-full max-w-xs p-1 text-sm" />
