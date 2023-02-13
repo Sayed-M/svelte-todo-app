@@ -12,8 +12,6 @@
         const updatedTodos: ITodo[] = currentFolder.activeTodos.filter(td => td.id !== todo.id);
         currentFolder.activeTodos = updatedTodos;
 
-        console.log(currentFolder.activeTodos)
-
         todo.isCompleted = true;
         currentFolder.completedTodos = [...currentFolder.completedTodos, todo]
         currentFolder = currentFolder;
