@@ -35,7 +35,7 @@
 
 <section class="flex flex-col gap-2 px-2">
     <div>
-        <p class="text-white">Create a folder</p>
+        <p class="text-white font-bold">Create a folder</p>
     </div>
     <form on:submit|preventDefault={() => createFolder()}>
         <div class="form-control">
