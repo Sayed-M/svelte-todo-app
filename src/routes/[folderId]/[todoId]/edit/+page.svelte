@@ -25,7 +25,7 @@
 		todoId = $page.params.todoId;
 
 		folder = $folders.find(folder => folder.id === folderId);
-		todo = folder?.todos.find(todo => todo.id === todoId);
+		todo = folder?.activeTodos.find(todo => todo.id === todoId);
 		
 		if ((tempName === todo.name && tempDescription === todo.description) || !tempName || !tempDescription) {
 			isSavingDisabled = true
@@ -43,8 +43,8 @@
 				description: tempDescription
 			})
 			todo = {...tempTodo}
-			todoIndex = folder.todos.findIndex(todo => todo.id === todoId)
-			folder.todos[todoIndex] = todo;
+			todoIndex = folder.activeTodos.findIndex(todo => todo.id === todoId)
+			folder.activeTodos[todoIndex] = todo;
 			saved = true;
 			setTimeout(() => {
 				saved = false;

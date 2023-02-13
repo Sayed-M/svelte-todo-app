@@ -17,7 +17,8 @@
             let newFolder: IFolder = {
                 id: uuidv4(),
                 name: folderName,
-                todos: []
+                activeTodos: [],
+                completedTodos: []
             }
             folders.update(currentFolders => {
                 return [...currentFolders, newFolder];

@@ -1,7 +1,8 @@
 export interface IFolder {
     id: string;
     name: string;
-    todos: ITodo[];
+    activeTodos: ITodo[];
+    completedTodos: ITodo[];
 }
 
 export interface ITodo {

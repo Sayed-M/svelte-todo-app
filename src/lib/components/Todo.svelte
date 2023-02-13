@@ -4,13 +4,19 @@
 
     export let todo: ITodo;
     export let folderId: string;
+    export let showEdit: boolean = true;
+    export let showComplete: boolean = true;
 
     let completeTodo = () => {
-        const currentFolder: IFolder = $folders.find(folder => folder.id === folderId)
-        // const updatedTodos: ITodo[] = currentFolder?.todos.filter(td => td.id !== todo.id);
-        todo.isCompleted = true;
-        currentFolder.todos = currentFolder.todos
+        let currentFolder: IFolder = $folders.find(folder => folder.id === folderId);
+        const updatedTodos: ITodo[] = currentFolder.activeTodos.filter(td => td.id !== todo.id);
+        currentFolder.activeTodos = updatedTodos;
 
+        console.log(currentFolder.activeTodos)
+
+        todo.isCompleted = true;
+        currentFolder.completedTodos = [...currentFolder.completedTodos, todo]
+        currentFolder = currentFolder;
         folders.update((currentFolders) => {
             return currentFolders;
         })
@@ -23,8 +29,12 @@
       <h2 class="card-title break-all">{todo.name}</h2>
       <p class="break-all">{todo.description}</p>
       <div class="card-actions justify-end">
-        <a href="/{folderId}/todos/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
-        <button class="btn btn-success hover:btn-active text-white" on:click={completeTodo}>Complete</button>
+        {#if showEdit}
+          <a href="/{folderId}/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
+        {/if}
+        {#if showComplete}
+          <button class="btn btn-success hover:btn-active text-white" on:click={completeTodo}>Complete</button>
+        {/if}
       </div>
     </div>
 </div>

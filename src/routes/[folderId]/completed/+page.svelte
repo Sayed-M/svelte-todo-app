@@ -3,7 +3,6 @@
 	import type { IFolder, ITodo } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
 	import Todo from '$lib/components/Todo.svelte';
-	import AddTodo from '$lib/components/AddTodo.svelte';
 
 	let folder: IFolder;
 	let completedTodos: ITodo[] = [];
@@ -13,8 +12,9 @@
 		
 		folder = $folders.find(folder => folder.id === $page.params.folderId);
 
-		completedTodos = folder?.completedTodos ? folder.completedTodos : [];
+		completedTodos = folder.completedTodos;
 
+		// completedTodosCount = completedTodos?.length ? completedTodos.length : 0;
 		completedTodosCount = completedTodos.length;
 
 	}
@@ -30,28 +30,18 @@
 		<div class="flex flex-col grow min-w-[250px]">
 			<h3 class="text-xl font-bold mb-1 capitalize break-all">{folder?.name}</h3>
 			<h3 class="text-gray-500 text-sm font-semibold mb-4 capitalize break-all">
-				<span>{folder?.activeTodos.length} Todos</span>
-				{#if completedTodosCount}
-					<span> - </span>
-					<a href="/{folder?.id}/completed" class="text-sky-600 underline">{completedTodosCount} Completed</a>.
-				{/if}
+				<span>{completedTodosCount} Completed Todos</span>
 			</h3>
-			{#if !folder?.activeTodos.length &&  !folder?.completedTodos.length}
-				<p class="text-md mt-2">No todos yet in this folder, Add some!</p>
+			{#if !folder?.completedTodos.length}
+				<p class="text-md mt-2">You haven't completed any Todo yet!</p>
 			{/if}
-			{#if folder?.activeTodos.length}
+			{#if folder?.completedTodos.length}
 				<div class="flex flex-wrap gap-4 mb-10">
-					{#each folder?.activeTodos as todo}
-						<!-- {#if !todo.isCompleted} -->
-							<Todo {todo} folderId={folder?.id}></Todo>
-						<!-- {/if} -->
+					{#each folder?.completedTodos as todo}
+						<Todo {todo} folderId={folder?.id} showEdit={false} showComplete={false}></Todo>
 					{/each}
 				</div>
 			{/if}
-			{#if !folder?.activeTodos.length && folder?.completedTodos.length}
-				<p class="text-md mt-2">Good job! you have completed all your todos, add some more!</p>
-			{/if}
 		</div>
-		<AddTodo></AddTodo>
 	</div>
 </section>

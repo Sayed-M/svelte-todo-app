@@ -24,10 +24,11 @@
             const newTodo: ITodo = {
                 id: uuidv4(),
                 name: todoName,
-                description: todoDescription
+                description: todoDescription,
+                isCompleted: false
             }
-            folder.todos = [
-                ...folder.todos,
+            folder.activeTodos = [
+                ...folder.activeTodos,
                 newTodo
             ]
             folders.update((currentFolders) => {

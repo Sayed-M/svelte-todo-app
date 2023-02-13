@@ -7,8 +7,8 @@
     export let folder: IFolder;
 
     let deleteFolder = () => {
-        if (folder.todos.length) {
-            let discardDeleting = confirm(`You have ${folder.todos.length} Todo(s) in this folder, Do you really want to delete?`);
+        if (folder.activeTodos.length) {
+            let discardDeleting = confirm(`You have ${folder.activeTodos.length} Todo(s) in this folder, Do you really want to delete?`);
             if (discardDeleting) {
                 confirmDelete();
             }
@@ -18,20 +18,25 @@
                 confirmDelete();
             }
         }
+    }
+
+    let confirmDelete = () => {
+        const deletedId = folder.id;
+        let updatedFolders = $folders.filter(fd => fd.id !== folder.id);
+        $folders = updatedFolders;
+        navigateAfterDelete(deletedId);
+    }
+
+    let navigateAfterDelete = (deletedId: string) => {
         if ($folders.length === 0) {
             goto(`/`);
             return;
         }
-        if (folder.id === $page.params.folderId) {
-            const firstFolder = $folders[0].id;
-            goto(`/${firstFolder}/`);
+        if (deletedId === $page.params.folderId) {
+            const firstFolderId = $folders[0].id;
+            goto(`/${firstFolderId}/`);
             return;
         }
-    }
-
-    let confirmDelete = () => {
-        let updatedFolders = $folders.filter(fd => fd.id !== folder.id)
-        $folders = updatedFolders;
     }
 
 </script>
