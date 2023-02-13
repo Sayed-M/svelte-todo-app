@@ -20,7 +20,7 @@
                 todos: []
             }
             folders.update(currentFolders => {
-                return [newFolder, ...currentFolders];
+                return [...currentFolders, newFolder];
             });
 
             if ($folders.length === 1) {
@@ -34,18 +34,9 @@
 </script>
 
 <section class="flex flex-col gap-2 px-2">
-    {#if $folders.length}
-        <h3 class="text-slate-400 font-bold">Folders</h3>
-        <ul>
-            {#each $folders as folder}
-                <Folder {folder}></Folder>
-            {/each}
-        </ul>
-        {:else}
-        <div>
-            <p class="text-white">Create a folder</p>
-        </div>
-    {/if}
+    <div>
+        <p class="text-white">Create a folder</p>
+    </div>
     <form on:submit|preventDefault={() => createFolder()}>
         <div class="form-control">
             <div class="input-group">
@@ -54,4 +45,12 @@
             </div>
         </div>
     </form>
+    {#if $folders.length}
+        <h3 class="text-slate-400 font-bold">Folders</h3>
+        <ul>
+            {#each $folders as folder}
+                <Folder {folder}></Folder>
+            {/each}
+        </ul>
+    {/if}
 </section>
