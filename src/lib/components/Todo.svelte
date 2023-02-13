@@ -23,7 +23,7 @@
       <p class="break-all">{todo.description}</p>
       <div class="card-actions justify-end">
         <a href="/{folderId}/todos/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
-        <button class="btn btn-success text-white" on:click={deleteTodo}>Done</button>
+        <button class="btn btn-success hover:btn-active text-white" on:click={deleteTodo}>Done</button>
       </div>
     </div>
 </div>
