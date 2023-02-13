@@ -40,7 +40,7 @@
     <a href="/{folder.id}" 
     class="grow no-underline break-all rounded bg-slate-600 hover:bg-sky-400 text-white break-words p-2" 
     class:active={folder.id === $page.params.folderId}>{folder.name}</a>
-    <button class="text-white absolute right-2 top-[10px] font-mono" 
+    <button class="text-white absolute top-0 bottom-0 right-0 font-mono w-[30px] bg-slate-700 rounded-r" 
     title="Delete {folder.name}"
     on:click={deleteFolder}>X</button>
 </li>
