@@ -30,7 +30,7 @@
 		<div class="flex flex-col grow min-w-[250px]">
 			<h3 class="text-xl font-bold mb-4 capitalize break-all">{folder?.name}</h3>
 			<p class="text-gray-500 text-sm font-semibold mb-4 capitalize break-all flex items-center gap-1">
-				<a href="/{folder?.id}" class="bg-gray-600 text-white rounded p-2">Todos ({folder?.activeTodos.length})</a>
+				<a href="/{folder?.id}" class="bg-gray-600 text-white rounded p-2">Active ({folder?.activeTodos.length})</a>
 				<span class="bg-sky-600 text-white rounded p-2 cursor-default">Completed ({completedTodosCount})</span>
 			</p>
 			{#if !folder?.completedTodos.length}
