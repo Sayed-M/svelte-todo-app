@@ -20,8 +20,8 @@
 				description: todoDescription
 			}
 			folder.todos = [
-				newTodo,
-				...folder.todos
+				...folder.todos,
+				newTodo
 			]
 			folders.update((currentFolders) => {
 				return currentFolders;
