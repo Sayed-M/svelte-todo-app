@@ -27,7 +27,12 @@
 		folder = $folders.find(folder => folder.id === folderId);
 		todo = folder?.todos.find(todo => todo.id === todoId);
 		
-		tempName && tempDescription ? isSavingDisabled = false : true;
+		if (tempName === todo.name && tempDescription === todo.description) {
+			isSavingDisabled = true
+		} else {
+			isSavingDisabled = false
+		}
+		
 	}
 
 	let saveTodo = () => {
