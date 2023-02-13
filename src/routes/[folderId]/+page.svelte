@@ -31,9 +31,7 @@
 			<h3 class="text-xl font-bold mb-4 capitalize break-all">{folder?.name}</h3>
 			<p class="text-gray-500 text-sm font-semibold mb-4 capitalize break-all flex items-center gap-1">
 				<span class="bg-sky-600 text-white rounded p-2 cursor-default">Todos ({folder?.activeTodos.length})</span>
-				{#if completedTodosCount}
-					<a href="/{folder?.id}/completed" class="bg-gray-600 text-white rounded p-2">Completed ({completedTodosCount})</a>
-				{/if}
+				<a href="/{folder?.id}/completed" class="bg-gray-600 text-white rounded p-2">Completed ({completedTodosCount})</a>
 			</p>
 			{#if !folder?.activeTodos.length &&  !folder?.completedTodos.length}
 				<p class="text-md mt-2">No todos yet in this folder, Add some!</p>
@@ -41,9 +39,7 @@
 			{#if folder?.activeTodos.length}
 				<div class="flex flex-wrap gap-4 mb-10">
 					{#each folder?.activeTodos as todo}
-						<!-- {#if !todo.isCompleted} -->
-							<Todo {todo} folderId={folder?.id}></Todo>
-						<!-- {/if} -->
+						<Todo {todo} folderId={folder?.id}></Todo>
 					{/each}
 				</div>
 			{/if}
