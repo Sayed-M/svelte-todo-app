@@ -27,7 +27,7 @@
 		folder = $folders.find(folder => folder.id === folderId);
 		todo = folder?.todos.find(todo => todo.id === todoId);
 		
-		if (tempName === todo.name && tempDescription === todo.description) {
+		if ((tempName === todo.name && tempDescription === todo.description) || !tempName || !tempDescription) {
 			isSavingDisabled = true
 		} else {
 			isSavingDisabled = false
