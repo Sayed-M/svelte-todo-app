@@ -5,10 +5,11 @@
     export let todo: ITodo;
     export let folderId: string;
 
-    let deleteTodo = () => {
+    let completeTodo = () => {
         const currentFolder: IFolder = $folders.find(folder => folder.id === folderId)
-        const updatedTodos: ITodo[] = currentFolder?.todos.filter(td => td.id !== todo.id);
-        currentFolder.todos = [...updatedTodos]
+        // const updatedTodos: ITodo[] = currentFolder?.todos.filter(td => td.id !== todo.id);
+        todo.isCompleted = true;
+        currentFolder.todos = currentFolder.todos
 
         folders.update((currentFolders) => {
             return currentFolders;
@@ -23,7 +24,7 @@
       <p class="break-all">{todo.description}</p>
       <div class="card-actions justify-end">
         <a href="/{folderId}/todos/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
-        <button class="btn btn-success hover:btn-active text-white" on:click={deleteTodo}>Done</button>
+        <button class="btn btn-success hover:btn-active text-white" on:click={completeTodo}>Complete</button>
       </div>
     </div>
 </div>
