@@ -19,7 +19,13 @@
             }
         }
         if ($folders.length === 0) {
-            goto(`/`)
+            goto(`/`);
+            return;
+        }
+        if (folder.id === $page.params.folderId) {
+            const firstFolder = $folders[0].id;
+            goto(`/${firstFolder}/`);
+            return;
         }
     }
 
