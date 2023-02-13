@@ -63,8 +63,8 @@
 		</div>
 		
 		<form on:submit|preventDefault={addTodo}>
-			<div class="bg-slate-800 w-[300px] border-indigo-600 border-r mr-4">
-				<div class="flex flex-col p-4 min-w-[300px] border-l border-primary">
+			<div class="bg-slate-800 w-[300px] mr-4 rounded-xl">
+				<div class="flex flex-col p-4 min-w-[300px]">
 					<h3 class="text-white font-bold">Add a new Todo</h3>
 					<div>
 						<label for="" class="label">
