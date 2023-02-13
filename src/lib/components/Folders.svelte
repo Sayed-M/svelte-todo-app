@@ -52,5 +52,7 @@
                 <Folder {folder}></Folder>
             {/each}
         </ul>
+        {:else}
+        <p class="text-gray-400 text-sm mt-2">You don't have folders yet!</p>
     {/if}
 </section>
