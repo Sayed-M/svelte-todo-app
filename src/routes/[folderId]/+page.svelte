@@ -28,14 +28,13 @@
 <section class="pt-6">
 	<div class="flex justify-between gap-4">
 		<div class="flex flex-col grow min-w-[250px]">
-			<h3 class="text-xl font-bold mb-1 capitalize break-all">{folder?.name}</h3>
-			<h3 class="text-gray-500 text-sm font-semibold mb-4 capitalize break-all">
-				<span>{folder?.activeTodos.length} Todos</span>
+			<h3 class="text-xl font-bold mb-4 capitalize break-all">{folder?.name}</h3>
+			<p class="text-gray-500 text-sm font-semibold mb-4 capitalize break-all flex items-center gap-1">
+				<span class="bg-sky-600 text-white rounded p-2 cursor-default">Todos ({folder?.activeTodos.length})</span>
 				{#if completedTodosCount}
-					<span> - </span>
-					<a href="/{folder?.id}/completed" class="text-sky-600 underline">{completedTodosCount} Completed</a>.
+					<a href="/{folder?.id}/completed" class="bg-gray-600 text-white rounded p-2">Completed ({completedTodosCount})</a>
 				{/if}
-			</h3>
+			</p>
 			{#if !folder?.activeTodos.length &&  !folder?.completedTodos.length}
 				<p class="text-md mt-2">No todos yet in this folder, Add some!</p>
 			{/if}
