@@ -8,9 +8,7 @@
 
 <section class="pt-6">
 
-	{#if $folders.length}
-		<p class="text-lg">Select a folder from the side menu!</p>
-		{:else}
+	{#if !$folders.length}
 		<p class="text-lg">Start by creating folders!</p>
 	{/if}
 
