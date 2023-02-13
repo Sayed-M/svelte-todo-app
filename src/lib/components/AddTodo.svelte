@@ -1,0 +1,63 @@
+<script lang="ts">
+	import { page } from '$app/stores';
+    import { v4 as uuidv4 } from 'uuid';
+	import type { IFolder, ITodo } from "$lib/models/models";
+	import { folders } from '$lib/stores/folders';
+
+	let folder: IFolder;
+
+    let todoName: string;
+	let todoDescription: string;
+
+	let isAddDisabled: boolean = true;
+
+    $: {
+		
+		folder = $folders.find(folder => folder.id === $page.params.folderId);
+
+		todoName && todoDescription ? isAddDisabled = false : true;
+
+	}
+
+    let addTodo = () => {
+        if (todoName && todoDescription) {
+            const newTodo: ITodo = {
+                id: uuidv4(),
+                name: todoName,
+                description: todoDescription
+            }
+            folder.todos = [
+                ...folder.todos,
+                newTodo
+            ]
+            folders.update((currentFolders) => {
+                return currentFolders;
+            });
+
+            todoName = '';
+            todoDescription = '';
+            isAddDisabled = true;
+        }
+    }
+</script>
+
+<form on:submit|preventDefault={addTodo}>
+    <div class="bg-slate-800 w-[300px] mr-4 rounded-xl">
+        <div class="flex flex-col p-4 min-w-[300px]">
+            <h3 class="text-white font-bold">Add a new Todo</h3>
+            <div>
+                <label for="" class="label">
+                    <span class="label-text text-white">Name</span>
+                </label>
+                <input type="text" bind:value={todoName} class="input w-full" placeholder="Todo name">
+            </div>
+            <div>
+                <label for="" class="label">
+                    <span class="label-text text-white">Description</span>
+                </label>
+                <input type="text" bind:value={todoDescription} class="input w-full" placeholder="Todo description">
+            </div>
+            <button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 mt-4" disabled={isAddDisabled}>Add</button>
+        </div>
+    </div>
+</form>
