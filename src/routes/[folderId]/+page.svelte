@@ -40,7 +40,7 @@
 				</div>
 			{/if}
 			{#if  folder?.todos.length && folder?.todos.length === completedTodosCount}
-				<p class="text-md mt-2">Congrats! you have completed all your todos, create some more!</p>
+				<p class="text-md mt-2">Good job! you have completed all your todos, add some more!</p>
 			{/if}
 		</div>
 		<AddTodo></AddTodo>
