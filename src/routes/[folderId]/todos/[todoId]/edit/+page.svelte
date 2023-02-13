@@ -43,7 +43,7 @@
 			saved = true;
 			setTimeout(() => {
 				saved = false;
-				goto(`/folders/${folderId}`, { replaceState: true })
+				goto(`/${folderId}`, { replaceState: true })
 			}, 1000)
 		}
 	}
@@ -51,11 +51,11 @@
 	let cancelEditing = () => {
 		if (tempName === todo.name && tempDescription === todo.description) {
 			// Navigate safely
-			goto(`/folders/${folderId}`, { replaceState: true })
+			goto(`/${folderId}`, { replaceState: true })
 		} else {
 			// unsaved changes
 			let discardChanges = confirm('You have unsaved changes, do you want to dicard it?');
-			discardChanges ? goto(`/folders/${folderId}`, { replaceState: true }) : null;
+			discardChanges ? goto(`/${folderId}`, { replaceState: true }) : null;
 		}
 	}
 

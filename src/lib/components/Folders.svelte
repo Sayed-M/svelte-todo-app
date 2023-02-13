@@ -24,7 +24,7 @@
             });
 
             if ($folders.length === 1) {
-                goto(`/folders/${$folders[0].id}`, { replaceState: true });
+                goto(`/${$folders[0].id}`, { replaceState: true });
             }
 
             folderName = '';
