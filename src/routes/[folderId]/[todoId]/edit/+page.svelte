@@ -99,7 +99,7 @@
 						<label for="" class="label">
 							<span class="label-text text-slate-900">Description</span>
 						</label>
-						<input type="text" bind:value={tempDescription} class="input border-slate-400 w-full" placeholder="Todo description">
+						<textarea bind:value={tempDescription} class="textarea border-slate-400 w-full" placeholder="Todo description" rows="5"></textarea>
 					</div>
 					<div class="flex justify-end">
 						<button type="button" class="btn btn-outline mt-4 mr-4" on:click={cancelEditing}>Cancel</button>

@@ -56,7 +56,7 @@
                 <label for="" class="label">
                     <span class="label-text text-white">Description</span>
                 </label>
-                <input type="text" bind:value={todoDescription} class="input w-full" placeholder="Todo description">
+                <textarea bind:value={todoDescription} class="textarea w-full" placeholder="Todo description" rows="5"></textarea>
             </div>
             <button type="submit" class="btn btn-primary bg-sky-500 hover:bg-sky-600 disabled:bg-slate-300 mt-4" disabled={isAddDisabled}>Add</button>
         </div>
