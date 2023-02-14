@@ -40,7 +40,8 @@
 			tempTodo = Object.assign({}, {
 				id: todo.id,
 				name: tempName,
-				description: tempDescription
+				description: tempDescription,
+				isCompleted: todo.isCompleted
 			})
 			todo = {...tempTodo}
 			todoIndex = folder.activeTodos.findIndex(todo => todo.id === todoId)
@@ -68,7 +69,8 @@
 		tempTodo = Object.assign({}, {
 			id: todo.id,
 			name: todo.name,
-			description: todo.description
+			description: todo.description,
+			isCompleted: todo.isCompleted
 		})
 		tempName = tempTodo?.name;
 		tempDescription = tempTodo?.description;
