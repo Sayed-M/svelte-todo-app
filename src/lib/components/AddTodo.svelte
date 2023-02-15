@@ -11,17 +11,15 @@
 
 	let isAddDisabled: boolean = true;
 
-    $: {
-		
-		folder = $folders.find(folder => folder.id === $page.params.folderId);
+    $: folder = $folders.find(folder => folder.id === $page.params.folderId);
 
+    $: {
         if (todoName && todoDescription) {
             isAddDisabled = false
         } else {
             isAddDisabled = true
         }
-
-	}
+    }
 
     let addTodo = () => {
         if (todoName && todoDescription) {
