@@ -2,12 +2,10 @@
 	import { page } from '$app/stores';
 	import type { IFolder } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
-	import Todo from '$lib/components/Todo.svelte';
 	import AddTodo from '$lib/components/AddTodo.svelte';
-	import Tabs from './Tabs.svelte';
+	import Tabs from '$lib/components/Tabs.svelte';
 	import { TodosTabs } from '$lib/enums/enums';
-
-	let TodosTabsEnum = TodosTabs;
+	import Todos from '$lib/components/Todos.svelte';
 
 	let folder: IFolder;
 
@@ -26,20 +24,12 @@
 			<Tabs folderId={folder?.id} 
 				activeTodosCount={folder?.activeTodos.length} 
 				completedTodosCount={folder?.completedTodos.length} 
-				todosTabs={TodosTabsEnum.Active} />
-			{#if !folder?.activeTodos.length &&  !folder?.completedTodos.length}
-				<p class="text-md mt-2">No todos yet in this folder, Add some!</p>
-			{/if}
-			{#if folder?.activeTodos.length}
-				<div class="flex flex-wrap gap-4 mb-10">
-					{#each folder?.activeTodos as todo}
-						<Todo {todo} folderId={folder?.id}></Todo>
-					{/each}
-				</div>
-			{/if}
-			{#if !folder?.activeTodos.length && folder?.completedTodos.length}
-				<p class="text-md mt-2">Good job! you have completed all your todos, add some more!</p>
-			{/if}
+				activeTab={TodosTabs.Active} />
+			<Todos todos={folder?.activeTodos} 
+			folderId={folder?.id} 
+			activeTodosCount={folder?.activeTodos.length} 
+			completedTodosCount={folder?.completedTodos.length} 
+			activeTab={TodosTabs.Active} />
 		</div>
 		<AddTodo></AddTodo>
 	</div>

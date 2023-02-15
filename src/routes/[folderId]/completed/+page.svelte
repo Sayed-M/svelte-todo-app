@@ -2,11 +2,9 @@
 	import { page } from '$app/stores';
 	import type { IFolder } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
-	import Todo from '$lib/components/Todo.svelte';
-	import Tabs from '../Tabs.svelte';
+	import Tabs from '$lib/components/Tabs.svelte';
 	import { TodosTabs } from '$lib/enums/enums';
-
-	let TodosTabsEnum = TodosTabs;
+	import Todos from '$lib/components/Todos.svelte';
 
 	let folder: IFolder;
 
@@ -25,17 +23,12 @@
 			<Tabs folderId={folder.id} 
 				activeTodosCount={folder.activeTodos.length} 
 				completedTodosCount={folder.completedTodos.length} 
-				todosTabs={TodosTabsEnum.Completed} />
-			{#if !folder?.completedTodos.length}
-				<p class="text-md mt-2">You haven't completed any Todo yet!</p>
-			{/if}
-			{#if folder?.completedTodos.length}
-				<div class="flex flex-wrap gap-4 mb-10">
-					{#each folder?.completedTodos as todo}
-						<Todo {todo} folderId={folder?.id} showEdit={false} showComplete={false}></Todo>
-					{/each}
-				</div>
-			{/if}
+				activeTab={TodosTabs.Completed} />
+			<Todos todos={folder?.completedTodos} 
+			folderId={folder.id}
+			activeTodosCount={folder.activeTodos.length} 
+			completedTodosCount={folder.completedTodos.length} 
+			activeTab={TodosTabs.Completed} />
 		</div>
 	</div>
 </section>
