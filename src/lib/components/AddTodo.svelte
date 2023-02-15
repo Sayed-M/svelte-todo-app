@@ -15,7 +15,11 @@
 		
 		folder = $folders.find(folder => folder.id === $page.params.folderId);
 
-		todoName && todoDescription ? isAddDisabled = false : true;
+        if (todoName && todoDescription) {
+            isAddDisabled = false
+        } else {
+            isAddDisabled = true
+        }
 
 	}
 
