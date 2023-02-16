@@ -9,7 +9,7 @@
 
     let deleteFolder = () => {
         if (folder.activeTodos.length) {
-            let discardDeleting = confirm(`You have ${folder.activeTodos.length} active Todo(s) in this folder, Do you really want to delete?`);
+            let discardDeleting = confirm(`You have ${folder.activeTodos.length} active ${folder.activeTodos.length === 1 ? 'Todo' : 'Todos'} in this folder, Do you really want to delete?`);
             if (discardDeleting) {
                 confirmDelete();
             }
