@@ -17,7 +17,7 @@
     {#if activeTab === TodosTabs.Active && !activeTodosCount && completedTodosCount}
         <p class="text-md mt-2">Good job! you have completed all your todos, add some more!</p>
     {/if}
-    {#if activeTab === TodosTabs.Completed && !todos.length}
+    {#if activeTab === TodosTabs.Completed && !todos?.length}
         <p class="text-md mt-2">You haven't completed any Todo yet!</p>
     {/if}
 
