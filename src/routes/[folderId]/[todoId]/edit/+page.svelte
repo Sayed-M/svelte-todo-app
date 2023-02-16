@@ -15,7 +15,7 @@
 	let tempDescription: string;
 
 	let saved: boolean = false;
-	let isSavingDisabled = true;
+	let isSavingDisabled: boolean = true;
 
 	$: folder = $folders.find(folder => folder.id === $page.params.folderId);
 	$: todo = folder?.activeTodos.find(todo => todo.id === $page.params.todoId);
