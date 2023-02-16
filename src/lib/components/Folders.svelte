@@ -4,6 +4,7 @@
 	import Folder from "$lib/components/Folder.svelte";
 	import { folders } from "$lib/stores/folders";
 	import { v4 as uuidv4 } from 'uuid';
+	import { mainController } from '$lib/controllers/controllers';
 
     let folderName: string = '';
     let isCreateDisabled: boolean = true;
@@ -13,6 +14,7 @@
     }
 
     let createFolder = () => {
+        const controller = mainController();
         if (folderName) {
             let newFolder: IFolder = {
                 id: uuidv4(),
@@ -20,9 +22,7 @@
                 activeTodos: [],
                 completedTodos: []
             }
-            folders.update(currentFolders => {
-                return [...currentFolders, newFolder];
-            });
+            controller.createFolder(newFolder);
 
             if ($folders.length === 1) {
                 goto(`/${$folders[0].id}`, { replaceState: true });
