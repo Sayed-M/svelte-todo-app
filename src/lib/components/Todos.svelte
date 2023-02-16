@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { ITodo } from "$lib/models/models";
+	import type { IFolder, ITodo } from "$lib/models/models";
 	import Todo from "$lib/components/Todo.svelte";
 	import { TodosTabs } from "$lib/enums/enums";
 
     export let todos: ITodo[] = [];
-    export let folderId: string;
+    export let folder: IFolder;
     export let activeTodosCount: number;
     export let completedTodosCount: number;
     export let activeTab: TodosTabs = TodosTabs.Active;
@@ -21,10 +21,11 @@
         <p class="text-md mt-2">You haven't completed any Todo yet!</p>
     {/if}
 
-    {#if todos.length}
+    {#if todos?.length}
         <div class="flex flex-wrap gap-4 mb-10">
             {#each todos as todo}
-                <Todo {todo} {folderId}
+                <Todo {todo} 
+                {folder}
                 showEdit={activeTab === TodosTabs.Active} 
                 showComplete={activeTab === TodosTabs.Active}></Todo>
             {/each}

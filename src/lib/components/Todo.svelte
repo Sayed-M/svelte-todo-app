@@ -3,18 +3,16 @@
     import { folders } from "$lib/stores/folders";
 
     export let todo: ITodo;
-    export let folderId: string;
+    export let folder: IFolder;
     export let showEdit: boolean = true;
     export let showComplete: boolean = true;
 
     let completeTodo = () => {
-        let currentFolder: IFolder = $folders.find(folder => folder.id === folderId);
-        const updatedTodos: ITodo[] = currentFolder.activeTodos.filter(td => td.id !== todo.id);
-        currentFolder.activeTodos = updatedTodos;
+        const updatedTodos: ITodo[] = folder.activeTodos.filter(td => td.id !== todo.id);
+        folder.activeTodos = updatedTodos;
 
         todo.isCompleted = true;
-        currentFolder.completedTodos = [...currentFolder.completedTodos, todo]
-        currentFolder = currentFolder;
+        folder.completedTodos = [...folder.completedTodos, todo]
         folders.update((currentFolders) => {
             return currentFolders;
         })
@@ -28,7 +26,7 @@
       <p class="break-all">{todo.description}</p>
       <div class="card-actions justify-end">
         {#if showEdit}
-          <a href="/{folderId}/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
+          <a href="/{folder.id}/{todo.id}/edit" class="btn btn-outline text-slate-500">Edit</a>
         {/if}
         {#if showComplete}
           <button class="btn btn-success hover:btn-active text-white" on:click={completeTodo}>Complete</button>

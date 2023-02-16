@@ -25,7 +25,7 @@
 				completedTodosCount={folder.completedTodos.length} 
 				activeTab={TodosTabs.Completed} />
 			<Todos todos={folder?.completedTodos} 
-			folderId={folder.id}
+			{folder}
 			activeTodosCount={folder.activeTodos.length} 
 			completedTodosCount={folder.completedTodos.length} 
 			activeTab={TodosTabs.Completed} />
