@@ -1,6 +1,6 @@
 <script lang="ts">
+	import { mainController } from "$lib/controllers/controllers";
     import type { IFolder, ITodo } from "$lib/models/models";
-    import { folders } from "$lib/stores/folders";
 
     export let todo: ITodo;
     export let folder: IFolder;
@@ -8,14 +8,8 @@
     export let showComplete: boolean = true;
 
     let completeTodo = () => {
-        const updatedTodos: ITodo[] = folder.activeTodos.filter(td => td.id !== todo.id);
-        folder.activeTodos = updatedTodos;
-
-        todo.isCompleted = true;
-        folder.completedTodos = [...folder.completedTodos, todo]
-        folders.update((currentFolders) => {
-            return currentFolders;
-        })
+        const controller = mainController();
+        controller.completeTodo(folder.id, todo.id);
     }
 
 </script>

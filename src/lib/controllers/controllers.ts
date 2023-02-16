@@ -21,5 +21,18 @@ export const mainController = () => {
                 return currentFolders;
             });
         },
+        completeTodo(folderId: string, todoId: string) {
+            folders.update(currentFolders => {
+                const folder = currentFolders.find(folder => folder.id === folderId);
+                const todo = folder?.activeTodos.find(todo => todo.id === todoId);
+
+                const updatedTodos = folder?.activeTodos.filter(todo => todo.id !== todoId);
+                folder.activeTodos = updatedTodos;
+
+                todo.isCompleted = true;
+                folder.completedTodos = [...folder.completedTodos, todo];
+                return currentFolders;
+            });
+        },
     }
 }
