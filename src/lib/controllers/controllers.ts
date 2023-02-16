@@ -34,5 +34,13 @@ export const mainController = () => {
                 return currentFolders;
             });
         },
+        updateTodo(folderId: string, todoId: string, newTodo: ITodo) {
+            folders.update(currentFolders => {
+                const folder = currentFolders.find(folder => folder.id === folderId);
+                const todoIndex = folder?.activeTodos.findIndex(td => td.id === todoId)
+                folder.activeTodos[todoIndex] = newTodo;
+                return currentFolders;
+            });
+        }
     }
 }

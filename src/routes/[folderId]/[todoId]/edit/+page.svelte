@@ -5,10 +5,10 @@
 	import { fade } from 'svelte/transition';
 	import type { IFolder, ITodo } from '$lib/models/models';
 	import { folders } from '$lib/stores/folders';
+	import { mainController } from '$lib/controllers/controllers';
 
 	let folderId: string;
 	let todoId: string;
-	let todoIndex: number;
 
 	let folder: IFolder;
 	let todo: ITodo;
@@ -36,16 +36,16 @@
 	}
 
 	let saveTodo = () => {
+        const controller = mainController();
 		if (tempName && tempDescription) {
 			tempTodo = Object.assign({}, {
 				id: todo.id,
 				name: tempName,
 				description: tempDescription,
 				isCompleted: todo.isCompleted
-			})
-			todo = {...tempTodo}
-			todoIndex = folder.activeTodos.findIndex(todo => todo.id === todoId)
-			folder.activeTodos[todoIndex] = todo;
+			});
+            controller.updateTodo(folderId, todoId, tempTodo);
+
 			saved = true;
 			setTimeout(() => {
 				saved = false;
