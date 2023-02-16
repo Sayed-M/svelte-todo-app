@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores';
     import { v4 as uuidv4 } from 'uuid';
 	import type { IFolder, ITodo } from "$lib/models/models";
-	import { folders } from '$lib/stores/folders';
+	import { mainController } from '$lib/controllers/controllers';
 
 	export let folder: IFolder;
 
@@ -20,6 +19,7 @@
     }
 
     let addTodo = () => {
+        const controller = mainController();
         if (todoName && todoDescription) {
             const newTodo: ITodo = {
                 id: uuidv4(),
@@ -27,13 +27,7 @@
                 description: todoDescription,
                 isCompleted: false
             }
-            folder.activeTodos = [
-                ...folder.activeTodos,
-                newTodo
-            ]
-            folders.update((currentFolders) => {
-                return currentFolders;
-            });
+            controller.addTodo(folder.id, newTodo);
 
             todoName = '';
             todoDescription = '';
