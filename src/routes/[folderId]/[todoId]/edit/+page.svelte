@@ -7,9 +7,6 @@
 	import { folders } from '$lib/stores/folders';
 	import { mainController } from '$lib/controllers/controllers';
 
-	let folderId: string;
-	let todoId: string;
-
 	let folder: IFolder;
 	let todo: ITodo;
 
@@ -20,19 +17,16 @@
 	let saved: boolean = false;
 	let isSavingDisabled = true;
 
-	$: {
-		folderId = $page.params.folderId;
-		todoId = $page.params.todoId;
+	$: folder = $folders.find(folder => folder.id === $page.params.folderId);
+	$: todo = folder?.activeTodos.find(todo => todo.id === $page.params.todoId);
 
-		folder = $folders.find(folder => folder.id === folderId);
-		todo = folder?.activeTodos.find(todo => todo.id === todoId);
-		
+	$: {
+
 		if ((tempName === todo.name && tempDescription === todo.description) || !tempName || !tempDescription) {
 			isSavingDisabled = true
 		} else {
 			isSavingDisabled = false
 		}
-		
 	}
 
 	let saveTodo = () => {
@@ -44,12 +38,12 @@
 				description: tempDescription,
 				isCompleted: todo.isCompleted
 			});
-            controller.updateTodo(folderId, todoId, tempTodo);
+            controller.updateTodo(folder.id, todo.id, tempTodo);
 
 			saved = true;
 			setTimeout(() => {
 				saved = false;
-				goto(`/${folderId}`, { replaceState: true })
+				goto(`/${folder.id}`, { replaceState: true })
 			}, 1000)
 		}
 	}
@@ -57,11 +51,11 @@
 	let cancelEditing = () => {
 		if (tempName === todo.name && tempDescription === todo.description) {
 			// Navigate safely
-			goto(`/${folderId}`, { replaceState: true })
+			goto(`/${folder.id}`, { replaceState: true })
 		} else {
 			// unsaved changes
 			let discardChanges = confirm('You have unsaved changes, do you want to dicard it?');
-			discardChanges ? goto(`/${folderId}`, { replaceState: true }) : null;
+			discardChanges ? goto(`/${folder.id}`, { replaceState: true }) : null;
 		}
 	}
 
