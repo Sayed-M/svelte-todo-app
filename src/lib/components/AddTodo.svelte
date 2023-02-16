@@ -4,14 +4,12 @@
 	import type { IFolder, ITodo } from "$lib/models/models";
 	import { folders } from '$lib/stores/folders';
 
-	let folder: IFolder;
+	export let folder: IFolder;
 
     let todoName: string;
 	let todoDescription: string;
 
 	let isAddDisabled: boolean = true;
-
-    $: folder = $folders.find(folder => folder.id === $page.params.folderId);
 
     $: {
         if (todoName && todoDescription) {

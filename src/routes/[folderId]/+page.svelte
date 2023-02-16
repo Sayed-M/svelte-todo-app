@@ -31,6 +31,6 @@
 			completedTodosCount={folder?.completedTodos.length} 
 			activeTab={TodosTabs.Active} />
 		</div>
-		<AddTodo></AddTodo>
+		<AddTodo {folder}></AddTodo>
 	</div>
 </section>
