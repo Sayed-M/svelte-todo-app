@@ -21,7 +21,7 @@
         <p class="text-md mt-2">You haven't completed any Todo yet!</p>
     {/if}
 
-    {#if todos?.length}
+    {#if todos.length}
         <div class="flex flex-wrap gap-4 mb-10">
             {#each todos as todo}
                 <Todo {todo} 
