@@ -10,7 +10,7 @@
     let isCreateDisabled: boolean = true;
 
     $: {
-        folderName ? isCreateDisabled = false : true;
+        isCreateDisabled = folderName ? false : true;
     }
 
     let createFolder = () => {
