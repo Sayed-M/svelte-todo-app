@@ -10,7 +10,7 @@
     let isCreateDisabled: boolean = true;
 
     $: {
-        isCreateDisabled = folderName ? false : true;
+        isCreateDisabled = folderName.trim() ? false : true;
     }
 
     let createFolder = () => {
@@ -18,7 +18,7 @@
         if (folderName) {
             let newFolder: IFolder = {
                 id: uuidv4(),
-                name: folderName,
+                name: folderName.trim(),
                 activeTodos: [],
                 completedTodos: []
             }
