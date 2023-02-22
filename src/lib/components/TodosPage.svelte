@@ -22,11 +22,7 @@
                 {activeTab} 
 				activeTodosCount={folder?.activeTodos.length} 
 				completedTodosCount={folder?.completedTodos.length}  />
-			<Todos todos={activeTab === TodosTabs.Active ? folder?.activeTodos : folder?.completedTodos} 
-			{folder} 
-            {activeTab} 
-			activeTodosCount={folder?.activeTodos.length} 
-			completedTodosCount={folder?.completedTodos.length}  />
+			<Todos {activeTab} />
 		</div>
 		{#if activeTab === TodosTabs.Active}
             <AddTodo {folder}></AddTodo>
