@@ -15,7 +15,6 @@
 	let isSavingDisabled: boolean = true;
 
 	$: {
-
 		if ((tempName === $activeTodo?.name && tempDescription === $activeTodo?.description) || !tempName || !tempDescription) {
 			isSavingDisabled = true
 		} else {
@@ -28,8 +27,8 @@
 		if (tempName && tempDescription) {
 			tempTodo = Object.assign({}, {
 				id: $activeTodo.id,
-				name: tempName,
-				description: tempDescription,
+				name: tempName.trim(),
+				description: tempDescription.trim(),
 				isCompleted: $activeTodo.isCompleted
 			});
             controller.updateTodo($activeFolder.folder.id, $activeTodo.id, tempTodo);

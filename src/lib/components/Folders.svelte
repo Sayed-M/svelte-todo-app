@@ -9,9 +9,7 @@
     let folderName: string = '';
     let isCreateDisabled: boolean = true;
 
-    $: {
-        isCreateDisabled = folderName.trim() ? false : true;
-    }
+    $: isCreateDisabled = folderName ? false : true;
 
     let createFolder = () => {
         const controller = mainController();

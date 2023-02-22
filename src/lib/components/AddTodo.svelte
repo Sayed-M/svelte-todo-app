@@ -9,21 +9,15 @@
 
 	let isAddDisabled: boolean = true;
 
-    $: {
-        if (todoName && todoDescription) {
-            isAddDisabled = false
-        } else {
-            isAddDisabled = true
-        }
-    }
+    $: isAddDisabled = todoName && todoDescription ? false : true;
 
     let addTodo = () => {
         const controller = mainController();
         if (todoName && todoDescription) {
             const newTodo: ITodo = {
                 id: uuidv4(),
-                name: todoName,
-                description: todoDescription,
+                name: todoName.trim(),
+                description: todoDescription.trim(),
                 isCompleted: false
             }
             controller.addTodo($activeFolder.folder.id, newTodo);
