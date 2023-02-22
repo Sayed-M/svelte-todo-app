@@ -1,5 +1,5 @@
 import type { IFolder, ITodo } from "$lib/models/models"
-import { folders } from "$lib/stores/folders"
+import { folders } from "$lib/stores/stores"
 
 export const mainController = () => {
     return {

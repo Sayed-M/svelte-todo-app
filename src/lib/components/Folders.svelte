@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
 	import type { IFolder } from '$lib/models/models';
 	import Folder from "$lib/components/Folder.svelte";
-	import { folders } from "$lib/stores/folders";
+	import { folders } from "$lib/stores/stores";
 	import { v4 as uuidv4 } from 'uuid';
 	import { mainController } from '$lib/controllers/controllers';
 

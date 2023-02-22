@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Todo from "$lib/components/Todo.svelte";
 	import { TodosTabs } from "$lib/enums/enums";
-    import { activeFolder } from "$lib/stores/folders";
+    import { activeFolder } from "$lib/stores/stores";
 
     export let activeTab: TodosTabs = TodosTabs.Active;
 

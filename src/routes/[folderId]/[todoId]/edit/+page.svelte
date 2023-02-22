@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import type { ITodo } from '$lib/models/models';
 	import { mainController } from '$lib/controllers/controllers';
-	import { activeTodo, activeFolder } from '$lib/stores/folders';
+	import { activeTodo, activeFolder } from '$lib/stores/stores';
 
 
 	let tempTodo :ITodo;

@@ -2,7 +2,7 @@
     import { v4 as uuidv4 } from 'uuid';
 	import type { ITodo } from "$lib/models/models";
 	import { mainController } from '$lib/controllers/controllers';
-	import { activeFolder } from '$lib/stores/folders';
+	import { activeFolder } from '$lib/stores/stores';
 
     let todoName: string;
 	let todoDescription: string;

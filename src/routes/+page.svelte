@@ -1,5 +1,5 @@
 <script>
-	import { folders } from "$lib/stores/folders";
+	import { folders } from "$lib/stores/stores";
 </script>
 
 <svelte:head>

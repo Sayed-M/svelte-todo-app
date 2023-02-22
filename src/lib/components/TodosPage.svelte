@@ -3,7 +3,7 @@
 	import Tabs from '$lib/components/Tabs.svelte';
 	import { TodosTabs } from '$lib/enums/enums';
 	import Todos from '$lib/components/Todos.svelte';
-	import { activeFolder } from '$lib/stores/folders';
+	import { activeFolder } from '$lib/stores/stores';
 
     export let activeTab: TodosTabs;
 
