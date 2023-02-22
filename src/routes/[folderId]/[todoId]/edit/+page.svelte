@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
-	import type { IFolder, ITodo } from '$lib/models/models';
-	import { folders } from '$lib/stores/folders';
+	import type { ITodo } from '$lib/models/models';
 	import { mainController } from '$lib/controllers/controllers';
+	import { activeTodo, folderDetails } from '$lib/stores/folders';
 
-	let folder: IFolder;
-	let todo: ITodo;
 
 	let tempTodo :ITodo;
 	let tempName: string;
@@ -17,12 +14,9 @@
 	let saved: boolean = false;
 	let isSavingDisabled: boolean = true;
 
-	$: folder = $folders.find(folder => folder.id === $page.params.folderId);
-	$: todo = folder?.activeTodos.find(todo => todo.id === $page.params.todoId);
-
 	$: {
 
-		if ((tempName === todo.name && tempDescription === todo.description) || !tempName || !tempDescription) {
+		if ((tempName === $activeTodo?.name && tempDescription === $activeTodo?.description) || !tempName || !tempDescription) {
 			isSavingDisabled = true
 		} else {
 			isSavingDisabled = false
@@ -33,38 +27,38 @@
         const controller = mainController();
 		if (tempName && tempDescription) {
 			tempTodo = Object.assign({}, {
-				id: todo.id,
+				id: $activeTodo.id,
 				name: tempName,
 				description: tempDescription,
-				isCompleted: todo.isCompleted
+				isCompleted: $activeTodo.isCompleted
 			});
-            controller.updateTodo(folder.id, todo.id, tempTodo);
+            controller.updateTodo($folderDetails.folder.id, $activeTodo.id, tempTodo);
 
 			saved = true;
 			setTimeout(() => {
 				saved = false;
-				goto(`/${folder.id}`, { replaceState: true })
+				goto(`/${$folderDetails.folder?.id}`, { replaceState: true })
 			}, 1000)
 		}
 	}
 
 	let cancelEditing = () => {
-		if (tempName === todo.name && tempDescription === todo.description) {
+		if (tempName === $activeTodo?.name && tempDescription === $activeTodo?.description) {
 			// Navigate safely
-			goto(`/${folder.id}`, { replaceState: true })
+			goto(`/${$folderDetails.folder?.id}`, { replaceState: true })
 		} else {
 			// unsaved changes
 			let discardChanges = confirm('You have unsaved changes, do you want to dicard it?');
-			discardChanges ? goto(`/${folder.id}`, { replaceState: true }) : null;
+			discardChanges ? goto(`/${$folderDetails.folder?.id}`, { replaceState: true }) : null;
 		}
 	}
 
 	onMount(async () => {
 		tempTodo = Object.assign({}, {
-			id: todo.id,
-			name: todo.name,
-			description: todo.description,
-			isCompleted: todo.isCompleted
+			id: $activeTodo.id,
+			name: $activeTodo.name,
+			description: $activeTodo.description,
+			isCompleted: $activeTodo.isCompleted
 		})
 		tempName = tempTodo?.name;
 		tempDescription = tempTodo?.description;
@@ -73,7 +67,7 @@
 </script>
 
 <svelte:head>
-	<title>Edit Todo {todo.name}</title>
+	<title>Edit Todo {$activeTodo?.name}</title>
 </svelte:head>
 
 <section class="pt-6">
@@ -82,7 +76,7 @@
 		<form class="grow" on:submit|preventDefault={saveTodo}>
 			<div class="grow mr-4">
 				<div class="flex flex-col p-4">
-					<h3 class="text-slate-900 text-xl font-semibold break-all">Edit Todo {todo.name}</h3>
+					<h3 class="text-slate-900 text-xl font-semibold break-all">Edit Todo {$activeTodo?.name}</h3>
 					<div>
 						<label for="" class="label">
 							<span class="label-text text-slate-900">Name</span>
