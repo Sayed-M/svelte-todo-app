@@ -4,7 +4,7 @@ import type { IFolder } from "../models/models";
 
 export const folders = writable<IFolder[]>([]);
 
-export const myDerivedStore =derived([folders, page], ([$folders, $page]) => {
+export const folderDetails =derived([folders, page], ([$folders, $page]) => {
     const folder = $folders.find(folder => folder.id === $page.params.folderId);
     let todos;
     let activeTodosCount;
