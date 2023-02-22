@@ -4,7 +4,7 @@
 	import { fade } from 'svelte/transition';
 	import type { ITodo } from '$lib/models/models';
 	import { mainController } from '$lib/controllers/controllers';
-	import { activeTodo, folderDetails } from '$lib/stores/folders';
+	import { activeTodo, activeFolder } from '$lib/stores/folders';
 
 
 	let tempTodo :ITodo;
@@ -32,12 +32,12 @@
 				description: tempDescription,
 				isCompleted: $activeTodo.isCompleted
 			});
-            controller.updateTodo($folderDetails.folder.id, $activeTodo.id, tempTodo);
+            controller.updateTodo($activeFolder.folder.id, $activeTodo.id, tempTodo);
 
 			saved = true;
 			setTimeout(() => {
 				saved = false;
-				goto(`/${$folderDetails.folder?.id}`, { replaceState: true })
+				goto(`/${$activeFolder.folder?.id}`, { replaceState: true })
 			}, 1000)
 		}
 	}
@@ -45,11 +45,11 @@
 	let cancelEditing = () => {
 		if (tempName === $activeTodo?.name && tempDescription === $activeTodo?.description) {
 			// Navigate safely
-			goto(`/${$folderDetails.folder?.id}`, { replaceState: true })
+			goto(`/${$activeFolder.folder?.id}`, { replaceState: true })
 		} else {
 			// unsaved changes
 			let discardChanges = confirm('You have unsaved changes, do you want to dicard it?');
-			discardChanges ? goto(`/${$folderDetails.folder?.id}`, { replaceState: true }) : null;
+			discardChanges ? goto(`/${$activeFolder.folder?.id}`, { replaceState: true }) : null;
 		}
 	}
 
