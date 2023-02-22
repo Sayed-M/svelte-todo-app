@@ -1,8 +1,7 @@
 <script lang="ts">
     import { v4 as uuidv4 } from 'uuid';
 	import type { ITodo } from "$lib/models/models";
-	import { mainController } from '$lib/controllers/controllers';
-	import { activeFolder } from '$lib/stores/stores';
+	import { activeFolder, folders } from '$lib/stores/stores';
 
     let todoName: string;
 	let todoDescription: string;
@@ -12,7 +11,6 @@
     $: isAddDisabled = todoName && todoDescription ? false : true;
 
     let addTodo = () => {
-        const controller = mainController();
         if (todoName && todoDescription) {
             const newTodo: ITodo = {
                 id: uuidv4(),
@@ -20,7 +18,7 @@
                 description: todoDescription.trim(),
                 isCompleted: false
             }
-            controller.addTodo($activeFolder.folder.id, newTodo);
+            folders.addTodo($activeFolder.folder.id, newTodo);
 
             todoName = '';
             todoDescription = '';

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { mainController } from "$lib/controllers/controllers";
     import type { IFolder, ITodo } from "$lib/models/models";
+	  import { folders } from "$lib/stores/stores";
 
     export let todo: ITodo;
     export let folder: IFolder;
@@ -8,8 +8,7 @@
     export let showComplete: boolean = true;
 
     let completeTodo = () => {
-        const controller = mainController();
-        controller.completeTodo(folder.id, todo.id);
+      folders.completeTodo(folder.id, todo.id);
     }
 
 </script>

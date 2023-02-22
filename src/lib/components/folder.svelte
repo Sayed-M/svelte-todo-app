@@ -3,7 +3,6 @@
     import type { IFolder } from "../models/models";
 	import { page } from '$app/stores';
 	import { folders } from "$lib/stores/stores";
-	import { mainController } from '$lib/controllers/controllers';
     
     export let folder: IFolder;
 
@@ -22,9 +21,8 @@
     }
 
     let confirmDelete = () => {
-        const controller = mainController();
         const deletedId = folder.id;
-        controller.deleteFolder(deletedId);
+        folders.deleteFolder(deletedId);
         navigateAfterDelete(deletedId);
     }
 

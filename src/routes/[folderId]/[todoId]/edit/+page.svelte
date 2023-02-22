@@ -3,9 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { fade } from 'svelte/transition';
 	import type { ITodo } from '$lib/models/models';
-	import { mainController } from '$lib/controllers/controllers';
-	import { activeTodo, activeFolder } from '$lib/stores/stores';
-
+	import { activeTodo, activeFolder, folders } from '$lib/stores/stores';
 
 	let tempTodo :ITodo;
 	let tempName: string;
@@ -23,7 +21,6 @@
 	}
 
 	let saveTodo = () => {
-        const controller = mainController();
 		if (tempName && tempDescription) {
 			tempTodo = Object.assign({}, {
 				id: $activeTodo.id,
@@ -31,7 +28,7 @@
 				description: tempDescription.trim(),
 				isCompleted: $activeTodo.isCompleted
 			});
-            controller.updateTodo($activeFolder.folder.id, $activeTodo.id, tempTodo);
+            folders.updateTodo($activeFolder.folder.id, $activeTodo.id, tempTodo);
 
 			saved = true;
 			setTimeout(() => {
