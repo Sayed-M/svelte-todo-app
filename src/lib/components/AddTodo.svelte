@@ -1,9 +1,8 @@
 <script lang="ts">
     import { v4 as uuidv4 } from 'uuid';
-	import type { IFolder, ITodo } from "$lib/models/models";
+	import type { ITodo } from "$lib/models/models";
 	import { mainController } from '$lib/controllers/controllers';
-
-	export let folder: IFolder;
+	import { folderDetails } from '$lib/stores/folders';
 
     let todoName: string;
 	let todoDescription: string;
@@ -27,7 +26,7 @@
                 description: todoDescription,
                 isCompleted: false
             }
-            controller.addTodo(folder.id, newTodo);
+            controller.addTodo($folderDetails.folder.id, newTodo);
 
             todoName = '';
             todoDescription = '';

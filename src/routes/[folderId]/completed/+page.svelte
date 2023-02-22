@@ -6,7 +6,6 @@
 	import { folders } from "$lib/stores/folders";
 
 	let folder: IFolder;
-	$: folder = $folders.find(folder => folder.id === $page.params.folderId);
 </script>
 
-<TodosPage {folder} activeTab={TodosTabs.Completed} />
+<TodosPage activeTab={TodosTabs.Completed} />
